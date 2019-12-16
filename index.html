@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <title>Lojinha De Jogos TADS 2018</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="js/index.js"></script>
+	  <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+	  <script type="text/javascript" src="js/loja.js"></script>
+    <input type="hidden" id="produto_id_delete">
+    <input type="hidden" id="compra_id_delete">
+    <input type="hidden" id="compra_tudo_delete">
+    <imput type="hidden" id="produto_id_update"><!-- escondendo o id de alteração -->
+
+      <!-- tela padrão -->
+      <div class="container" id="tela_padrao" align="center">
+        <br>
+          <a id="deviceready" class="blink"><img src="img/logo.png" alt=""/></a>
+            <div class="row">
+              <div class="col-md-12">
+                <br><br>
+                  <input type="button" value="Incluir Itens" id="buttonMenu" class="btn btn-lg btn-primary form-control" onclick="mostrar_tela_incluir()">
+                    <br><br><br>
+                      <input type="button" value="Ver Produtos" id="buttonMenu" class="btn btn-lg btn-primary form-control" onclick="mostrar_tela_listar()">
+                  <br><br><br>
+                <input type="button" value="Carrinho de Compras" id="buttonMenu" class="btn btn-lg btn-primary form-control" onclick="mostrar_tela_comprar()">
+              </div>
+            </div>
+          <br><br><br><br><br><br>
+        <a href=""><img src="img/social.png" alt=""/></a>
+      </div>
+
+      <!-- tela inclusão -->
+  	<div class="container" id="tela_inclusao" hidden>
+        <div class="row100">
+    	  	<div class="col-md-12">
+            <h2>Incluir um Produto</h2>
+              <br><br>
+    				    <div class="inputBox">
+                  <input type="text" class="form-control" required="required" id="produto_nome">
+                <span class="text">Nome</span>
+              <span class="line"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row100">
+          <div class="col-md-12"><br>
+            <div class="inputBox">
+              <input type="text" class="form-control" required="required" id="produto_preco">
+                <span class="text">Preço</span>
+              <span class="line"></span>
+            </div>
+          </div>
+        </div>
+          <div class="row100">
+            <div class="col-md-12"><br>
+              <div class="inputBox">
+              <input type="text" class="form-control" required="required" id="produto_estoque">
+                <span class="text">Quantidade em Estoque</span>
+              <span class="line"></span>
+            </div><br><br>
+            <input type="button" id="buttonEfeito" class="btn btn-lg btn-primary form-control" value="Incluir" onclick="produto_insert();"><br><br>
+            <input type="button" id="buttonEfeito" class="btn btn-lg btn-primary form-control" value="Voltar" onclick="tela_incluir_mostrar_tela_padrao();"><br><br>
+          </div>
+        </div>
+    </div>
+
+    <!-- tela listar -->
+    <div class="container" id="tela_listar" hidden align="center" style="color:#38F2FF">
+        <script type="text/javascript">produto_view();</script>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Lista de Produtos</h2><br><br>
+                <table class="table">
+                    <thead>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Quantidade em Estoque</th>
+                        <th>Preço</th>
+                        <th>Ações</th>
+                        <tr></tr>
+                    </thead>
+                    <tbody id = "produto_listagem"></tbody>
+                </table>
+                <input type="button" id="buttonEfeito" class="btn btn-lg btn-primary form-control" value="Voltar" onclick="tela_listar_mostrar_tela_padrao();">
+            </div>
+        </div>
+    </div>
+
+<!--tela comprar -->
+<div class="container" id="tela_comprar" hidden >
+  <div class="row100">
+    <div class="col-md-12">
+      <h2>Comprar um produto</h2>
+        <br><br>
+          <div class="inputBox">
+            <input type="text" class="form-control" id="id_prod_compra">
+              <span class="text">ID DO PRODUTO</span>
+            <span class="line"></span>
+        </div>
+    </div>
+  </div>
+  <div class="row100">
+    <div class="col-md-12"><br>
+      <div class="inputBox">
+        <input type="text" class="form-control" id="nome_compra">
+            <span class="text">NOME DO PRODUTO</span>
+        <span class="line"></span>
+    </div>
+  </div>
+</div>
+    <div class="row100">
+      <div class="col-md-12"><br>
+        <div class="inputBox">
+          <input type="text" class="form-control" id="valor_unit_compra">
+              <span class="text">PREÇO DA UNIDADE</span>
+          <span class="line"></span>
+      </div>
+    </div>
+  </div>
+    <div class="row100">
+      <div class="col-md-12"><br>
+        <div class="inputBox">
+          <input type="text" class="form-control" id="qtd_compra">
+             <span class="text">QUANTIDADE A SER COMPRADA</span>
+            <span class="line"></span>
+          </div><br><br>
+        <input type="button" id="buttonEfeito" class="btn btn-lg btn-primary form-control" value="Incluir" onclick="compra_insert();"><br><br>
+      <input type="button" id="buttonEfeito" class="btn btn-lg btn-primary form-control" value="Voltar" onclick="tela_comprar_mostrar_tela_listar();"><br><br>
+    </div>
+  </div>
+</div>
+
+    <!-- tela carrinho -->
+    <div class="container" id="tela_carrinho" hidden align="center" style="color:#38F2FF">
+        <script type="text/javascript">compra_view();</script>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Carrinho de Compras</h2><br><br>
+                <table class="table">
+                    <thead>
+                        <th>ID do Produto</th>
+                        <th>Nome</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <tr></tr>
+                    </thead>
+                    <tbody id ="compra_listagem"></tbody>
+                </table>
+                <h3>Valor Total do Carrinho:</h1>R$: <input type="button" placeholder="R$" id="total" style="color:black"><br><br><br>
+                <input type="button" id="buttonEfeito" class="btn btn-lg btn-primary form-control" value="Finalizar Compra" onclick="finalizar_compra();"><br><br>
+                <input type="button" id="buttonEfeito" class="btn btn-lg btn-primary form-control" value="Voltar" onclick="tela_carrinho_mostrar_tela_padrao();">
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"></script>
+
+    <script>produto_view();</script>
+
+</body>
+
+</html>

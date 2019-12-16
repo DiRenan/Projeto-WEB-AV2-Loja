@@ -1,0 +1,271 @@
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+      box-sizing: border-box;
+
+}
+
+body {
+
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#001E38;
+    background-image:linear-gradient(top, #000F1C 0%, #001E38%);
+    background-image:-webkit-linear-gradient(top, #000F1C 0%, #001E38 51%);
+    background-image:-ms-linear-gradient(top, #000F1C 0%, #001E38 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #000F1C),
+        color-stop(0.90, #001E38)
+    );
+    /*background:url(../img/fundo.jpg) no-repeat center top;  /* 170px x 200px */
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:14px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;            /* position in the center of the screen */
+    left:55%;
+    top:30%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+#buttonEfeito{
+  position: relative;
+  display: inline-block;
+  color:black;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-decoration: none;
+  font-size: 20px;
+  overflow: hidden;
+  transition: 0.2s;
+  left:0;
+  top:0;
+  height:40px;
+  height:50px;
+  width:300px;
+  text-align:center;
+
+}
+#buttonEfeito:hover
+{
+color: white;
+background: #000F1C;
+box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+}
+
+#buttonMenu{
+
+  position: relative;
+  display: inline-block;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-decoration: none;
+  font-size: 24px;
+  overflow: hidden;
+  transition: 0.2s;
+  left:0;
+  top:0;
+  height:50px;
+  width:400px;
+  text-align:center;
+}
+#buttonMenu:hover
+{
+color: white;
+background: #000F1C;
+box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+}
+
+#total{
+
+  position: relative;
+  display: inline-block;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-decoration: none;
+  font-size: 24px;
+  overflow: hidden;
+  transition: 0.2s;
+  left:0;
+  top:0;
+  height:50px;
+  width:200px;
+  text-align:center;
+}
+#total:hover
+{
+color: white;
+box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+}
+
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+.blink {
+    animation:fade 4000ms infinite;
+    -webkit-animation:fade 2000ms infinite;
+}
+
+#agenda_item_lista h3, .agenda_item_lista h5{
+  margin: 0px;
+}
+
+
+.container h2{
+  width: 100%;
+  color: #45f3ff;
+  font-size: 36px;
+  margin-bottom: 10px;
+
+}
+.row100{
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(autofit, minmax(300px,1fr));
+
+}
+.row100{
+  position: relative;
+  width: 100%;
+  padding: 0 10px;
+  margin: 30px 0 10px;
+  transition: 0.5s;
+
+}
+.row100 .inputBox{
+  position: relative;
+  width: 100%;
+  height: 40px;
+  color: #45f3ff;
+
+}
+.row100 .inputBox input,
+.row100 .inputBox.textarea textarea{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-shadow: nome;
+  outline: nome;
+  font-size: 18px;
+  padding: 0 10px;
+  z-index: 1;
+  color: #ffffff;
+
+}
+.row100 .inputBox .text{
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 40px;
+  font-size: 18px;
+  padding: 0 10px;
+  display: block;;
+  transition: 0.5s;
+  pointer-events: none;
+
+}
+.row100 .inputBox input:focus + .text,
+.row100 .inputBox input:valid + .text{
+  top: -35px;
+  left: -10px;
+}
+.row100 .inputBox .line{
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: 0.5s;
+  border-radius: 2px;
+  pointer-events: none;
+
+}
+.row100 .inputBox input:focus ~ .line,
+.row100 .inputBox input:valid ~ .line{
+  height: 100%;
+
+}
+.row100 .inputBox.textarea{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10px 0;
+
+}
+.row100 .inputBox.textarea textarea{
+  height: 100%;
+  resize: none;
+}
+
+.row100 .inputBox textarea:focus + .text,
+.row100 .inputBox textarea:valid + .text{
+  top: -35px;
+  left: -10px;f
+}
+.row100 .inputBox textarea:focus ~ .line,
+.row100 .inputBox textarea:valid ~ .line{
+  height: 100%;
+
+}
